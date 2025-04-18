@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Iglu Profits per Location Sample</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f8ff;
+      color: #003366;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-color: #e6f2ff;
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+      margin: 0;
+    }
+
+    .content {
+      padding: 20px;
+      max-width: 900px;
+      margin: auto;
+    }
+
+    .controls {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      margin-bottom: 20px;
+      gap: 10px;
+    }
+
+    .controls input[type="text"] {
+      flex: 1;
+      padding: 10px;
+      font-size: 16px;
+      border: 1px solid #cce6ff;
+      border-radius: 6px;
+    }
+
+    .controls button {
+      background-color: #007acc;
+      color: white;
+      padding: 10px 16px;
+      font-size: 16px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .controls button:hover {
+      background-color: #005fa3;
+    }
+
+    iframe {
+      width: 100%;
+      height: 500px;
+      border: 2px solid #cce6ff;
+      border-radius: 8px;
+      background-color: #ffffff;
+      box-shadow: 0 4px 8px rgba(0, 51, 102, 0.1);
+    }
+
+    @media (max-width: 600px) {
+      .controls {
+        flex-direction: column;
+      }
+
+      .controls input[type="text"],
+      .controls button {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h2>Live Google Sheet View (Range I2:M9)</h2>
+  </header>
+
+  <div class="content">
+    <div class="controls">
+      <input type="text" id="searchInput" placeholder="Type to search (visual only)">
+      <button onclick="reloadIframe()">Refresh</button>
+    </div>
+    <iframe id="sheetFrame"
+      src="https://docs.google.com/spreadsheets/d/1Q8_PL7Y6NgBJlyIT6ZZN9nyUXk1p-aIDOYkf6djnLsQ/edit?gid=454960701#gid=454960701&range=I2:M9">
+    </iframe>
+  </div>
+
+  <script>
+    function reloadIframe() {
+      const iframe = document.getElementById("sheetFrame");
+      iframe.src = iframe.src; // Refreshes iframe
+    }
+
+    // Simulated search (since iframe content can't be accessed due to CORS)
+    document.getElementById("searchInput").addEventListener("input", function () {
+      const keyword = this.value.trim().toLowerCase();
+      if (keyword) {
+        alert("Search is visual only — real filtering isn't possible in embedded Google Sheets. Use Ctrl+F inside the frame.");
+      }
+    });
+  </script>
+</body>
+</html>
