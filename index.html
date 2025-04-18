@@ -2,40 +2,92 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Iglu Profits per Location Sample</title>
+  <title>Iglu Profits Viewer</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f0f8ff;
-      color: #003366;
-      margin: 0;
-      padding: 0;
+    html {
+      scroll-behavior: smooth;
     }
 
-    header {
-      background-color: #e6f2ff;
-      padding: 20px;
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background-color: #f0f8ff;
+      color: #003366;
+    }
+
+    nav {
+      background-color: #cce6ff;
+      padding: 12px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    nav a {
+      color: #003366;
+      text-decoration: none;
+      margin-left: 20px;
+      font-weight: bold;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    section {
+      padding: 60px 20px;
+      max-width: 900px;
+      margin: auto;
+    }
+
+    .hero {
       text-align: center;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      padding: 100px 20px 60px;
+    }
+
+    .hero h1 {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      margin-bottom: 30px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .hero a {
+      background-color: #007acc;
+      color: white;
+      text-decoration: none;
+      padding: 14px 28px;
+      font-size: 18px;
+      border-radius: 8px;
+      transition: background-color 0.3s;
+    }
+
+    .hero a:hover {
+      background-color: #005fa3;
     }
 
     h2 {
-      margin: 0;
-    }
-
-    .content {
-      padding: 20px;
-      max-width: 900px;
-      margin: auto;
+      text-align: center;
+      margin-bottom: 30px;
     }
 
     .controls {
       display: flex;
       flex-wrap: wrap;
       justify-content: space-between;
-      margin-bottom: 20px;
       gap: 10px;
+      margin-bottom: 20px;
     }
 
     .controls input[type="text"] {
@@ -70,40 +122,70 @@
       box-shadow: 0 4px 8px rgba(0, 51, 102, 0.1);
     }
 
+    footer {
+      text-align: center;
+      padding: 30px 20px;
+      background-color: #e6f2ff;
+      font-size: 0.9rem;
+    }
+
     @media (max-width: 600px) {
       .controls {
         flex-direction: column;
       }
 
-      .controls input[type="text"],
+      .controls input,
       .controls button {
         width: 100%;
+      }
+
+      nav {
+        flex-direction: column;
+        gap: 8px;
       }
     }
   </style>
 </head>
 <body>
-  <header>
-    <h2>Iglu Profits per Location Sample (Range I2:M9)</h2>
-  </header>
 
-  <div class="content">
+  <nav>
+    <div><strong>Iglu Viewer</strong></div>
+    <div>
+      <a href="#home">Home</a>
+      <a href="#sheet">Live Sheet</a>
+    </div>
+  </nav>
+
+  <!-- Hero/Home Section -->
+  <section id="home" class="hero">
+    <h1>Welcome to Iglu Profits Viewer</h1>
+    <p>Click below to view a live Google Sheet showing sample profits per location (range I2:M9).</p>
+    <a href="#sheet">View Live Sheet</a>
+  </section>
+
+  <!-- Sheet Embed Section -->
+  <section id="sheet">
+    <h2>Iglu Profits per Location (Sample)</h2>
     <div class="controls">
       <input type="text" id="searchInput" placeholder="Type to search (visual only)">
       <button onclick="reloadIframe()">Refresh</button>
     </div>
     <iframe id="sheetFrame"
-      src="https://docs.google.com/spreadsheets/d/1Q8_PL7Y6NgBJlyIT6ZZN9nyUXk1p-aIDOYkf6djnLsQ/edit?gid=454960701#gid=454960701&range=I2:M9">
+      src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQAm-KGk28GnqxFx0QZDnKDncfk0HTA0jQ0eNlqnc5DLxEjyRf19Vn4ZKvz3Dy9RA/pubhtml?gid=454960701&range=I2:M9&single=true&widget=true&headers=false">
     </iframe>
-  </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    &copy; 2025 Iglu Viewer. All rights reserved.
+  </footer>
 
   <script>
     function reloadIframe() {
       const iframe = document.getElementById("sheetFrame");
-      iframe.src = iframe.src; // Refreshes iframe
+      iframe.src = iframe.src;
     }
 
-    // Simulated search (since iframe content can't be accessed due to CORS)
     document.getElementById("searchInput").addEventListener("input", function () {
       const keyword = this.value.trim().toLowerCase();
       if (keyword) {
@@ -111,5 +193,7 @@
       }
     });
   </script>
+
 </body>
 </html>
+
