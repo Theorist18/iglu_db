@@ -85,17 +85,9 @@
     .controls {
       display: flex;
       flex-wrap: wrap;
-      justify-content: space-between;
+      justify-content: flex-end;
       gap: 10px;
       margin-bottom: 20px;
-    }
-
-    .controls input[type="text"] {
-      flex: 1;
-      padding: 10px;
-      font-size: 16px;
-      border: 1px solid #cce6ff;
-      border-radius: 6px;
     }
 
     .controls button {
@@ -134,7 +126,6 @@
         flex-direction: column;
       }
 
-      .controls input,
       .controls button {
         width: 100%;
       }
@@ -167,7 +158,6 @@
   <section id="sheet">
     <h2>Iglu Profits per Location (Sample)</h2>
     <div class="controls">
-      <input type="text" id="searchInput" placeholder="Type to search (visual only)">
       <button onclick="reloadIframe()">Refresh</button>
     </div>
     <iframe id="sheetFrame"
@@ -185,15 +175,9 @@
       const iframe = document.getElementById("sheetFrame");
       iframe.src = iframe.src;
     }
-
-    document.getElementById("searchInput").addEventListener("input", function () {
-      const keyword = this.value.trim().toLowerCase();
-      if (keyword) {
-        alert("Search is visual only — real filtering isn't possible in embedded Google Sheets. Use Ctrl+F inside the frame.");
-      }
-    });
   </script>
 
 </body>
 </html>
+
 
